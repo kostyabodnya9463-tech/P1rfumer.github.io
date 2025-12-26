@@ -21,9 +21,9 @@
             
             <nav>
                 <ul>
-                    <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
-                    <li><a href="#" class="nav-link" data-page="info">О компании</a></li>
-                    <li><a href="#" class="nav-link" data-page="feedback">Обратная связь</a></li>
+                    <li><a href="#home" class="nav-link active" data-page="home">Главная</a></li>
+                    <li><a href="#info" class="nav-link" data-page="info">О компании</a></li>
+                    <li><a href="#feedback" class="nav-link" data-page="feedback">Обратная связь</a></li>
                 </ul>
             </nav>
         </div>
@@ -36,7 +36,7 @@
             <div class="hero">
                 <h2>Комфортабельные междугородние перевозки</h2>
                 <p>Более 15 лет мы обеспечиваем безопасные и комфортные поездки по всей стране. Современный автопарк, профессиональные водители и забота о каждом пассажире.</p>
-                <a href="#" class="btn btn-yellow nav-link" data-page="info">Подробнее о нас</a>
+                <a href="#info" class="btn btn-yellow nav-link" data-page="info">Подробнее о нас</a>
             </div>
             
             <div class="features">
@@ -99,10 +99,10 @@
                 
                 <h3>Фотогалерея</h3>
                 <div class="gallery">
-                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Автобус ТрансЛюкс">
-                    <img src="https://images.unsplash.com/photo-1509741102002-f2d38ac5b48c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Комфортабельный салон">
-                    <img src="https://images.unsplash.com/photo-1562184552-b7a1069700fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Водитель компании">
-                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Современный автопарк">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Автобус ТрансЛюкс">
+                    <img src="https://images.unsplash.com/photo-1509741102002-f2d38ac5b48c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Комфортабельный салон">
+                    <img src="https://images.unsplash.com/photo-1562184552-b7a1069700fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Водитель компании">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Современный автопарк">
                 </div>
             </div>
         </section>
@@ -166,7 +166,6 @@
                 <h3>Отзывы наших пассажиров</h3>
                 
                 <div id="comments-list">
-                    <!-- Комментарии будут добавляться динамически -->
                     <div class="comment">
                         <div class="comment-header">
                             <span class="comment-author">Анна Смирнова</span>
@@ -207,169 +206,43 @@
 
     <!-- Подвал сайта -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h3>Контакты</h3>
-                <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
-                <p><i class="fas fa-envelope"></i> info@translux.ru</p>
-                <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Транспортная, д. 15</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fas fa-envelope"></i> info@translux.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Транспортная, д. 15</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Расписание</h3>
+                    <p><a href="#">Рейсы в Москву</a></p>
+                    <p><a href="#">Рейсы в Санкт-Петербург</a></p>
+                    <p><a href="#">Все направления</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>О компании</h3>
+                    <p><a href="#info" class="nav-link" data-page="info">О нас</a></p>
+                    <p><a href="#">Вакансии</a></p>
+                    <p><a href="#">Партнерам</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <p><a href="#"><i class="fab fa-vk"></i> ВКонтакте</a></p>
+                    <p><a href="#"><i class="fab fa-telegram"></i> Telegram</a></p>
+                    <p><a href="#"><i class="fab fa-youtube"></i> YouTube</a></p>
+                </div>
             </div>
             
-            <div class="footer-section">
-                <h3>Расписание</h3>
-                <p><a href="#">Рейсы в Москву</a></p>
-                <p><a href="#">Рейсы в Санкт-Петербург</a></p>
-                <p><a href="#">Все направления</a></p>
+            <div class="copyright">
+                <p>&copy; 2023 "ТрансЛюкс - междугородние пассажирские перевозки". Все права защищены.</p>
             </div>
-            
-            <div class="footer-section">
-                <h3>О компании</h3>
-                <p><a href="#" class="nav-link" data-page="info">О нас</a></p>
-                <p><a href="#">Вакансии</a></p>
-                <p><a href="#">Партнерам</a></p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Социальные сети</h3>
-                <p><a href="#"><i class="fab fa-vk"></i> ВКонтакте</a></p>
-                <p><a href="#"><i class="fab fa-telegram"></i> Telegram</a></p>
-                <p><a href="#"><i class="fab fa-youtube"></i> YouTube</a></p>
-            </div>
-        </div>
-        
-        <div class="container copyright">
-            <p>&copy; 2023 "ТрансЛюкс - междугородние пассажирские перевозки". Все права защищены.</p>
         </div>
     </footer>
 
-    <script>
-        // Навигация по страницам
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page');
-            
-            // Инициализация пользователя из localStorage
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser) {
-                showUserSection(currentUser);
-            }
-            
-            // Обработка навигации
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Убираем активный класс у всех ссылок
-                    navLinks.forEach(navLink => navLink.classList.remove('active'));
-                    
-                    // Добавляем активный класс текущей ссылке
-                    this.classList.add('active');
-                    
-                    // Скрываем все страницы
-                    pages.forEach(page => page.classList.remove('active'));
-                    
-                    // Показываем выбранную страницу
-                    const pageId = this.getAttribute('data-page');
-                    document.getElementById(pageId).classList.add('active');
-                });
-            });
-            
-            // Обработка формы авторизации
-            const loginForm = document.getElementById('login-form');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const login = document.getElementById('login').value;
-                    const email = document.getElementById('email').value;
-                    const phone = document.getElementById('phone').value;
-                    
-                    // В реальном приложении здесь была бы отправка данных на сервер
-                    // и проверка/подтверждение email или телефона
-                    
-                    // Сохраняем пользователя в localStorage
-                    const user = {
-                        login: login,
-                        email: email,
-                        phone: phone,
-                        avatar: login.charAt(0).toUpperCase()
-                    };
-                    
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    
-                    // Показываем секцию пользователя
-                    showUserSection(user);
-                    
-                    // Очищаем форму
-                    loginForm.reset();
-                    
-                    // Показываем сообщение об успешной авторизации
-                    alert('Вы успешно авторизованы! Теперь вы можете оставлять комментарии.');
-                });
-            }
-            
-            // Обработка выхода
-            const logoutBtn = document.getElementById('logout-btn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function() {
-                    localStorage.removeItem('currentUser');
-                    document.getElementById('auth-form').classList.remove('hidden');
-                    document.getElementById('user-section').classList.add('hidden');
-                    document.getElementById('login-message').classList.remove('hidden');
-                });
-            }
-            
-            // Обработка формы комментария
-            const commentForm = document.getElementById('comment-form');
-            if (commentForm) {
-                commentForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const commentText = document.getElementById('comment-text').value;
-                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                    
-                    if (!currentUser) {
-                        alert('Пожалуйста, авторизуйтесь для оставления комментариев.');
-                        return;
-                    }
-                    
-                    // Создаем новый комментарий
-                    const comment = document.createElement('div');
-                    comment.className = 'comment';
-                    
-                    const now = new Date();
-                    const formattedDate = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth()+1).toString().padStart(2, '0')}.${now.getFullYear()}`;
-                    
-                    comment.innerHTML = `
-                        <div class="comment-header">
-                            <span class="comment-author">${currentUser.login}</span>
-                            <span class="comment-date">${formattedDate}</span>
-                        </div>
-                        <div class="comment-text">${commentText}</div>
-                    `;
-                    
-                    // Добавляем комментарий в начало списка
-                    document.getElementById('comments-list').prepend(comment);
-                    
-                    // Очищаем форму
-                    commentForm.reset();
-                    
-                    // Показываем сообщение об успешной публикации
-                    alert('Ваш отзыв успешно опубликован!');
-                });
-            }
-            
-            // Функция показа секции пользователя
-            function showUserSection(user) {
-                document.getElementById('auth-form').classList.add('hidden');
-                document.getElementById('user-section').classList.remove('hidden');
-                document.getElementById('login-message').classList.add('hidden');
-                
-                document.getElementById('user-name').textContent = user.login;
-                document.getElementById('user-avatar').textContent = user.avatar;
-                document.getElementById('user-contact').textContent = user.email || user.phone;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
