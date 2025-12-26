@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Административная панель - ТрансЛюкс</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-header">
+                <img src="images/logo.png" alt="ТрансЛюкс логотип" class="logo">
+                <h1>ТрансЛюкс</h1>
+                <p class="tagline">Междугородние пассажирские перевозки</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> О компании</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-comments"></i> Обратная связь</a></li>
+                    <li><a href="admin.html" class="active"><i class="fas fa-user-cog"></i> Админ-панель</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Административная панель</h2>
+                <p>Управление данными системы "ТрансЛюкс"</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="admin-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="database">Управление БД</button>
+                        <button class="tab-btn" data-tab="requests">Запросы</button>
+                        <button class="tab-btn" data-tab="statistics">Статистика</button>
+                        <button class="tab-btn" data-tab="feedback-mod">Модерация отзывов</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="database">
+                        <h3>Управление базой данных</h3>
+                        <div class="admin-grid">
+                            <div class="admin-card">
+                                <h4><i class="fas fa-table"></i> Таблицы базы данных</h4>
+                                <ul class="db-tables">
+                                    <li><strong>Маршруты</strong> - информация о маршрутах</li>
+                                    <li><strong>Рейсы</strong> - расписание и детали рейсов</li>
+                                    <li><strong>Автобусы</strong> - технические характеристики</li>
+                                    <li><strong>Пассажиры</strong> - данные о пассажирах</li>
+                                    <li><strong>Билеты</strong> - информация о проданных билетах</li>
+                                    <li><strong>Водители</strong> - данные о водителях</li>
+                                </ul>
+                                <button class="btn btn-small" onclick="showTables()">Показать структуру</button>
+                            </div>
+                            
+                            <div class="admin-card">
+                                <h4><i class="fas fa-edit"></i> Редактирование данных</h4>
+                                <p>Выберите таблицу для редактирования:</p>
+                                <select id="tableSelect">
+                                    <option value="">Выберите таблицу</option>
+                                    <option value="routes">Маршруты</option>
+                                    <option value="flights">Рейсы</option>
+                                    <option value="buses">Автобусы</option>
+                                    <option value="passengers">Пассажиры</option>
+                                </select>
+                                <div class="action-buttons">
+                                    <button class="btn btn-small" onclick="addRecord()">Добавить запись</button>
+                                    <button class="btn btn-small" onclick="editRecord()">Редактировать</button>
+                                    <button class="btn btn-small btn-danger" onclick="deleteRecord()">Удалить</button>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-card">
+                                <h4><i class="fas fa-archive"></i> Архивация данных</h4>
+                                <p>Архивирование выполненных рейсов и устаревших записей:</p>
+                                <button class="btn btn-small" onclick="archiveOldData()">Архивировать старые рейсы</button>
+                                <button class="btn btn-small" onclick="backupDatabase()">Создать резервную копию</button>
+                                <div class="archive-info">
+                                    <p><strong>Последняя архивация:</strong> 15.10.2023</p>
+                                    <p><strong>Размер архива:</strong> 245 МБ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="requests">
+                        <h3>Запросы к базе данных</h3>
+                        <div class="query-container">
+                            <div class="query-form">
+                                <h4>Выполнить запрос</h4>
+                                <div class="form-group">
+                                    <label for="queryType">Тип запроса:</label>
+                                    <select id="queryType" onchange="changeQueryType()">
+                                        <option value="seats">Наличие свободных мест на рейс</option>
+                                        <option value="passengers">Количество пассажиров выполненного рейса</option>
+                                        <option value="income">Доходность рейса</option>
+                                        <option value="list">Список пассажиров рейса</option>
+                                        <option value="search">Поиск билетов по фамилии</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="queryParams">
+                                    <!-- Параметры запроса будут подгружаться здесь -->
+                                </div>
+                                
+                                <button class="btn" onclick="executeQuery()">Выполнить запрос</button>
+                            </div>
+                            
+                            <div class="query-results">
+                                <h4>Результаты запроса</h4>
+                                <div id="queryResults">
+                                    <p>Выберите тип запроса и заполните параметры</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="statistics">
+                        <h3>Статистический учет</h3>
+                        <div class="stats-controls">
+                            <div class="form-group">
+                                <label for="statsPeriod">Период:</label>
+                                <select id="statsPeriod" onchange="updateStats()">
+                                    <option value="day">По дням</option>
+                                    <option value="week">По неделям</option>
+                                    <option value="month" selected>По месяцам</option>
+                                    <option value="year">По годам</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="statsRoute">Направление:</label>
+                                <select id="statsRoute" onchange="updateStats()">
+                                    <option value="all">Все направления</option>
+                                    <option value="msk-spb">Москва - СПб</option>
+                                    <option value="msk-kzn">Москва - Казань</option>
+                                    <option value="msk-nn">Москва - Нижний Новгород</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="charts-container">
+                            <div class="chart-box">
+                                <h4>Количество перевезенных пассажиров</h4>
+                                <canvas id="passengersChart"></canvas>
+                            </div>
+                            
+                            <div class="chart-box">
+                                <h4>Объем перевозок (руб.)</h4>
+                                <canvas id="incomeChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-summary">
+                            <h4>Сводная статистика</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="summary-value" id="totalPassengers">0</span>
+                                    <span class="summary-label">Всего пассажиров</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="totalIncome">0 руб.</span>
+                                    <span class="summary-label">Общий доход</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="avgLoad">0%</span>
+                                    <span class="summary-label">Средняя загрузка</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-value" id="completedFlights">0</span>
+                                    <span class="summary-label">Выполнено рейсов</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="feedback-mod">
+                        <h3>Модерация отзывов</h3>
+                        <div class="feedback-moderation">
+                            <div class="mod-controls">
+                                <h4>Отзывы на модерации</h4>
+                                <div class="filter-controls">
+                                    <button class="btn btn-small active">Все (5)</button>
+                                    <button class="btn btn-small">Новые (3)</button>
+                                    <button class="btn btn-small">Жалобы (2)</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mod-feedback-list">
+                                <!-- Список отзывов на модерации -->
+                                <div class="mod-feedback-item">
+                                    <div class="mod-feedback-header">
+                                        <span class="feedback-user"><strong>Иван_Петров</strong></span>
+                                        <span class="feedback-date">12.10.2023</span>
+                                        <span class="feedback-rating">★★★★☆</span>
+                                        <span class="feedback-topic">Качество обслуживания</span>
+                                    </div>
+                                    <div class="mod-feedback-text">
+                                        <p>Отличный сервис, комфортабельный автобус, вежливый водитель. Единственный минус - небольшое опоздание при отправлении.</p>
+                                    </div>
+                                    <div class="mod-feedback-actions">
+                                        <button class="btn btn-small btn-success" onclick="approveFeedback(this)">Одобрить</button>
+                                        <button class="btn btn-small btn-warning" onclick="editFeedback(this)">Редактировать</button>
+                                        <button class="btn btn-small btn-danger" onclick="rejectFeedback(this)">Отклонить</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mod-feedback-item">
+                                    <div class="mod-feedback-header">
+                                        <span class="feedback-user"><strong>Анна_Сидорова</strong></span>
+                                        <span class="feedback-date">11.10.2023</span>
+                                        <span class="feedback-rating">★★☆☆☆</span>
+                                        <span class="feedback-topic">Соблюдение расписания</span>
+                                    </div>
+                                    <div class="mod-feedback-text">
+                                        <p>Рейс задержали на 2 часа без объяснения причин. Очень неудобно, особенно когда есть пересадки.</p>
+                                    </div>
+                                    <div class="mod-feedback-actions">
+                                        <button class="btn btn-small btn-success" onclick="approveFeedback(this)">Одобрить</button>
+                                        <button class="btn btn-small btn-warning" onclick="editFeedback(this)">Редактировать</button>
+                                        <button class="btn btn-small btn-danger" onclick="rejectFeedback(this)">Отклонить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ТрансЛюкс</h3>
+                    <p>Междугородние пассажирские перевозки</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О компании</a></li>
+                        <li><a href="feedback.html">Обратная связь</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fas fa-envelope"></i> info@translux.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Транспортная, д. 10</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ТрансЛюкс. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

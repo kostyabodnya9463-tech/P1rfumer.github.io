@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратная связь - ТрансЛюкс</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-header">
+                <img src="images/logo.png" alt="ТрансЛюкс логотип" class="logo">
+                <h1>ТрансЛюкс</h1>
+                <p class="tagline">Междугородние пассажирские перевозки</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> О компании</a></li>
+                    <li><a href="feedback.html" class="active"><i class="fas fa-comments"></i> Обратная связь</a></li>
+                    <li><a href="admin.html"><i class="fas fa-user-cog"></i> Админ-панель</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Обратная связь</h2>
+                <p>Ваше мнение важно для нас. Оставляйте отзывы и задавайте вопросы</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-main">
+                        <div class="feedback-form-container">
+                            <h3>Оставить отзыв</h3>
+                            <p class="form-info">Пожалуйста, заполните все поля формы. Все отзывы публикуются с указанием вашего имени (логина) и проходят модерацию.</p>
+                            
+                            <form id="feedbackForm">
+                                <div class="form-group">
+                                    <label for="username">Имя пользователя (логин) *</label>
+                                    <input type="text" id="username" name="username" required>
+                                    <small>Это имя будет отображаться вместе с вашим отзывом</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Электронная почта *</label>
+                                    <input type="email" id="email" name="email" required>
+                                    <small>На эту почту придет подтверждение вашего отзыва. Адрес не будет публиковаться.</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Телефон (дополнительно)</label>
+                                    <input type="tel" id="phone" name="phone">
+                                    <small>Может использоваться для уточнения деталей отзыва</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Тема отзыва *</label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="">Выберите тему</option>
+                                        <option value="quality">Качество обслуживания</option>
+                                        <option value="schedule">Соблюдение расписания</option>
+                                        <option value="comfort">Комфорт в автобусе</option>
+                                        <option value="drivers">Работа водителей</option>
+                                        <option value="tickets">Продажа билетов</option>
+                                        <option value="other">Другое</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Текст отзыва *</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="rating">Оценка</label>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5">
+                                        <label for="star5"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1"><i class="fas fa-star"></i></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="agree" name="agree" required>
+                                        <label for="agree">Я согласен с публикацией отзыва с указанием моего имени пользователя</label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn">Отправить отзыв</button>
+                            </form>
+                            
+                            <div id="formMessage" class="form-message"></div>
+                        </div>
+                        
+                        <div class="feedback-list">
+                            <h3>Отзывы клиентов</h3>
+                            <div id="feedbackItems">
+                                <!-- Отзывы будут загружаться здесь -->
+                                <div class="loading">Загрузка отзывов...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-sidebar">
+                        <div class="sidebar-box">
+                            <h4><i class="fas fa-info-circle"></i> Правила публикации</h4>
+                            <p>Все отзывы проходят модерацию перед публикацией. Мы оставляем за собой право не публиковать отзывы, которые:</p>
+                            <ul>
+                                <li>Содержат ненормативную лексику</li>
+                                <li>Носят оскорбительный характер</li>
+                                <li>Содержат рекламные материалы</li>
+                                <li>Написаны анонимно</li>
+                            </ul>
+                            <p>Каждый отзыв должен быть подписан именем пользователя (логином) и подтвержден реальной электронной почтой.</p>
+                        </div>
+                        
+                        <div class="sidebar-box">
+                            <h4><i class="fas fa-question-circle"></i> Частые вопросы</h4>
+                            <div class="faq-item">
+                                <h5>Почему нельзя оставить анонимный отзыв?</h5>
+                                <p>Мы ценим честность и открытость. Подтверждение личности помогает нам быть уверенными в достоверности отзывов и позволяет связаться с автором при необходимости.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h5>Будет ли виден мой email другим пользователям?</h5>
+                                <p>Нет, ваш email не публикуется и используется только для подтверждения отзыва и возможной связи с вами.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h5>Сколько времени занимает модерация отзыва?</h5>
+                                <p>Обычно модерация занимает от нескольких часов до одного рабочего дня.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ТрансЛюкс</h3>
+                    <p>Междугородние пассажирские перевозки</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О компании</a></li>
+                        <li><a href="feedback.html">Обратная связь</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fas fa-envelope"></i> info@translux.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Транспортная, д. 10</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ТрансЛюкс. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/feedback.js"></script>
+</body>
+</html>
